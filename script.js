@@ -18,13 +18,13 @@ function addTask() {
   }
 }
 
-// Load tasks from local storage
+
 function loadTasks() {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.forEach(renderTask);
 }
 
-// Render task to the DOM
+
 function renderTask(task) {
   const taskItem = document.createElement('li');
   taskItem.className = 'task-item';
@@ -56,7 +56,7 @@ function renderTask(task) {
 
 viewButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // Remove active class from all buttons, then add it to the clicked one
+     
       viewButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
   
@@ -65,10 +65,9 @@ viewButtons.forEach(button => {
     });
   });
 
-  // Function to filter tasks based on view
 function filterTasks(view) {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    taskList.innerHTML = '';  // Clear current list
+    taskList.innerHTML = '';  
   
     tasks.forEach(task => {
       if (
@@ -81,24 +80,24 @@ function filterTasks(view) {
     });
   }
 
-// Toggle task completion status
+
 function toggleTask(task, taskElement) {
   task.completed = !task.completed;
   updateTaskInLocalStorage(task);
 
-  // Update the task's UI
+ 
   taskElement.classList.toggle('completed');
   taskElement.querySelector('.complete-btn').textContent = task.completed ? 'Undo' : 'Complete';
 }
 
-// Save the task to local storage
+
 function saveTask(task) {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.push(task);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// Update a specific task in local storage
+
 function updateTaskInLocalStorage(updatedTask) {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   const taskIndex = tasks.findIndex(t => t.text === updatedTask.text);
@@ -108,7 +107,7 @@ function updateTaskInLocalStorage(updatedTask) {
   }
 }
 
-// Delete task from local storage and remove it from the DOM
+
 function deleteTask(task, taskElement) {
   const tasks = JSON.parse(localStorage.getItem('tasks')).filter(t => t.text !== task.text);
   localStorage.setItem('tasks', JSON.stringify(tasks));
